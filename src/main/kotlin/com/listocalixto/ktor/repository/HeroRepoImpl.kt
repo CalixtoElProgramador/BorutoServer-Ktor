@@ -411,7 +411,7 @@ class HeroRepoImpl : HeroRepo {
         )
     }
 
-    private fun calculatePage(page: Int): Map<String, Int?> {
+    override fun calculatePage(page: Int): Map<String, Int?> {
         var prevPage: Int? = page
         var nextPage: Int? = page
         if (page in MINIMUM_PAGE_VALUE..MAXIMUM_NEXT_PAGE_VALUE) {

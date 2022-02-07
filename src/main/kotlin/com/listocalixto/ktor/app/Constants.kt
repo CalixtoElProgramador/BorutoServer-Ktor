@@ -9,5 +9,13 @@ object Constants {
     const val MINIMUM_PREV_PAGE_VALUE = MINIMUM_PAGE_VALUE + 1
     const val MAXIMUM_NEXT_PAGE_VALUE = MAXIMUM_PAGE_VALUE - 1
 
+    private const val BASE_URL = "/boruto"
+    const val ENDPOINT_ALL_HEROES = "$BASE_URL/heroes"
+    const val ENDPOINT_FIND_HERO_BY_NAME = "$ENDPOINT_ALL_HEROES/search"
+
+    const val ERR_HEROES_NOT_FOUND = "Heroes not found."
+    const val ERR_INVALID_PAGE_NUMBER = "Only numbers allowed."
+
+
 
 }

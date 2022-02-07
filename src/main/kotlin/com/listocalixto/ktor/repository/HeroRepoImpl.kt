@@ -414,10 +414,10 @@ class HeroRepoImpl : HeroRepo {
     private fun calculatePage(page: Int): Map<String, Int?> {
         var prevPage: Int? = page
         var nextPage: Int? = page
-        if (page in MINIMUM_PAGE_VALUE.. MAXIMUM_NEXT_PAGE_VALUE) {
+        if (page in MINIMUM_PAGE_VALUE..MAXIMUM_NEXT_PAGE_VALUE) {
             nextPage = nextPage?.plus(1)
         }
-        if (page in MINIMUM_PREV_PAGE_VALUE.. MAXIMUM_PAGE_VALUE) {
+        if (page in MINIMUM_PREV_PAGE_VALUE..MAXIMUM_PAGE_VALUE) {
             prevPage = prevPage?.minus(1)
         }
         if (page == MINIMUM_PAGE_VALUE) {
@@ -430,6 +430,23 @@ class HeroRepoImpl : HeroRepo {
     }
 
     override suspend fun searchHeroes(name: String): ApiResponse {
-        TODO("Not yet implemented")
+        return ApiResponse(true, "Ok", heroes = findHeroesByName(name))
+    }
+
+    private fun findHeroesByName(query: String?): List<Hero> {
+        val founded = mutableListOf<Hero>()
+        val heroName = query?.lowercase()
+        return if (!heroName.isNullOrEmpty()) {
+            heroes.forEach { (_, heroes) -> // We search in our map variable. For each pair.
+                heroes.forEach { hero -> // For each list in that pair.
+                    if (hero.name.lowercase().contains(heroName)) {
+                        founded.add(hero)
+                    }
+                }
+            }
+            founded
+        } else {
+            emptyList()
+        }
     }
 }

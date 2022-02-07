@@ -4,6 +4,7 @@ import com.listocalixto.ktor.app.Constants.KEY_NEXT_PAGE
 import com.listocalixto.ktor.app.Constants.KEY_PREV_PAGE
 import com.listocalixto.ktor.app.Constants.MAXIMUM_PAGE_VALUE
 import com.listocalixto.ktor.app.Constants.MAXIMUM_NEXT_PAGE_VALUE
+import com.listocalixto.ktor.app.Constants.MSG_SUCCESS
 import com.listocalixto.ktor.app.Constants.MINIMUM_PAGE_VALUE
 import com.listocalixto.ktor.app.Constants.MINIMUM_PREV_PAGE_VALUE
 import com.listocalixto.ktor.models.ApiResponse
@@ -404,7 +405,7 @@ class HeroRepoImpl : HeroRepo {
     override suspend fun getAllHeroes(page: Int): ApiResponse {
         return ApiResponse(
             success = true,
-            message = "Ok",
+            message = MSG_SUCCESS,
             prevPage = calculatePage(page)[KEY_PREV_PAGE],
             nextPage = calculatePage(page)[KEY_NEXT_PAGE],
             heroes = heroes[page]!!
@@ -430,10 +431,10 @@ class HeroRepoImpl : HeroRepo {
     }
 
     override suspend fun searchHeroes(name: String): ApiResponse {
-        return ApiResponse(true, "Ok", heroes = findHeroesByName(name))
+        return ApiResponse(true, MSG_SUCCESS, heroes = findHeroesByName(name))
     }
 
-    private fun findHeroesByName(query: String?): List<Hero> {
+    override fun findHeroesByName(query: String?): List<Hero> {
         val founded = mutableListOf<Hero>()
         val heroName = query?.lowercase()
         return if (!heroName.isNullOrEmpty()) {

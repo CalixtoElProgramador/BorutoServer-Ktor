@@ -16,6 +16,10 @@ object Constants {
     const val ERR_HEROES_NOT_FOUND = "Heroes not found."
     const val ERR_INVALID_PAGE_NUMBER = "Only numbers allowed."
 
+    const val MSG_SUCCESS = "Ok"
+    const val MSG_ENDPOINT_NON_EXISTING = "Page not founded"
+    const val MSG_UNAUTHORIZED_USER = "Authentication Error: Verify your credentials"
+
 
 
 }
